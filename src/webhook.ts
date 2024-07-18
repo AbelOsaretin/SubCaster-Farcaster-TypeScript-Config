@@ -5,6 +5,7 @@ import connectDB from "./db";
 import { UserToSubscribes, SubscribeToUsers } from "./models";
 import { addSubscribesToWebhook } from "./webhook-helper";
 import { frameReply, sendDirectCast } from "./frameReply-helper";
+import { frameDirectCast } from "./frameDC-helper";
 import { neynarClient } from "./config";
 
 dotenv.config();
@@ -144,10 +145,9 @@ app.post("/watch", async (req: Request, res: Response) => {
         sendDirectCast(
           user,
           `
-          GM GM.
           New Cast from ${authorDisplayName}
-          https://warpcast.com/${authorUsername}
           https://warpcast.com/${authorUsername}/${body.data.hash.slice(0, 10)}
+          ${frameDirectCast(authorDisplayName, authorUsername)}
           `
         );
       })
