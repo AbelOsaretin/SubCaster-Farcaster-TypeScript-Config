@@ -18,6 +18,7 @@ const db_1 = __importDefault(require("./db"));
 const models_1 = require("./models");
 const webhook_helper_1 = require("./webhook-helper");
 const frameReply_helper_1 = require("./frameReply-helper");
+const frameDC_helper_1 = require("./frameDC-helper");
 const config_1 = require("./config");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -106,10 +107,9 @@ app.post("/watch", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const userData = yield config_1.neynarClient.fetchBulkUsers(users);
         Promise.all(users.map((user) => {
             (0, frameReply_helper_1.sendDirectCast)(user, `
-          GM GM.
           New Cast from ${authorDisplayName}
-          https://warpcast.com/${authorUsername}
           https://warpcast.com/${authorUsername}/${body.data.hash.slice(0, 10)}
+          ${(0, frameDC_helper_1.frameDirectCast)(authorDisplayName, authorUsername)}
           `);
         })).then(() => {
             console.log({
