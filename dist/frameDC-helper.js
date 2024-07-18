@@ -17,7 +17,7 @@ const frameDirectCast = (hookData, message) => __awaiter(void 0, void 0, void 0,
         pages: [
             {
                 image: {
-                    url: "",
+                    url: "https://moralis.io/wp-content/uploads/web3wiki/638-gm/637aeda23eca28502f6d3eae_61QOyzDqTfxekyfVuvH7dO5qeRpU50X-Hs46PiZFReI.jpeg",
                     aspect_ratio: "1:1",
                 },
                 title: message,
