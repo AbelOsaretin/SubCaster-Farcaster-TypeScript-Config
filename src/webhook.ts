@@ -140,16 +140,15 @@ app.post("/watch", async (req: Request, res: Response) => {
     const { users } = subscribesData;
     const userData = await neynarClient.fetchBulkUsers(users);
 
+    const dcMessage = `
+    New Cast from ${authorDisplayName}
+    
+    https://warpcast.com/${authorUsername}/${body.data.hash.slice(0, 10)}
+    `;
+
     Promise.all(
       users.map((user) => {
-        sendDirectCast(
-          user,
-          `
-          New Cast from ${authorDisplayName}
-          https://warpcast.com/${authorUsername}/${body.data.hash.slice(0, 10)}
-          ${frameDirectCast(authorDisplayName, authorUsername)}
-          `
-        );
+        sendDirectCast(user, dcMessage);
       })
     ).then(() => {
       console.log({

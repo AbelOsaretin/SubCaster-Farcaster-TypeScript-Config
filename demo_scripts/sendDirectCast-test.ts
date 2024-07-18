@@ -1,7 +1,15 @@
 import { sendDirectCast } from "../src/frameReply-helper";
 
-const user = 763053;
-const message = "Hello World";
+const user = 671935;
+const message = `
+Hello World
+
+This is a test
+
+https://moralis.io
+
+https://warpcast.com
+`;
 
 sendDirectCast(user, message)
   .then(() => {
