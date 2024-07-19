@@ -34,7 +34,3 @@ export const resetSubscribesAndDb = async () => {
 
   console.log({ userData, subscribesData });
 };
-
-connectDB().then(() =>
-  resetSubscribesAndDb().then(() => console.log("resetSubscribesAndDb"))
-);
