@@ -26,7 +26,7 @@ export const resetSubscribesAndDb = async () => {
     {
       subscription: {
         "cast.created": {
-          author_fids: [],
+          author_fids: [792715],
         },
       },
     }
