@@ -5,7 +5,6 @@ import connectDB from "./db";
 import { UserToSubscribes, SubscribeToUsers } from "./models";
 import { addSubscribesToWebhook } from "./webhook-helper";
 import { frameReply, sendDirectCast } from "./frameReply-helper";
-import { frameDirectCast } from "./frameDC-helper";
 import { neynarClient } from "./config";
 import cron from "node-cron";
 import { resetSubscribesAndDb } from "./cron-action";

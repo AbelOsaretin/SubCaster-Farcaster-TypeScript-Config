@@ -4,7 +4,6 @@ import {
   watcherWebhookName,
   watcherWebhookUrl,
 } from "./config";
-import connectDB from "./db";
 import { SubscribeToUsers, UserToSubscribes } from "./models";
 
 export const resetSubscribesAndDb = async () => {
