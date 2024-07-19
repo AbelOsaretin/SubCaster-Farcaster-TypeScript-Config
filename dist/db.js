@@ -13,12 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
+const config_1 = require("./config");
 // Create a MongoClient with a MongoClie>ntOptions object to set the Stable API version
 function connectDB() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             // Connect the client to the server	(optional starting in v4.7)
-            mongoose_1.default.connect(process.env.MONGODB_URI);
+            mongoose_1.default.connect(config_1.MONGODB_URI);
             // Send a ping to confirm a successful connection
             console.log("Pinged your deployment. You successfully connected to MongoDB!");
         }

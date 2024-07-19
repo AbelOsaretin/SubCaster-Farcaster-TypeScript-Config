@@ -7,6 +7,8 @@ import { addSubscribesToWebhook } from "./webhook-helper";
 import { frameReply, sendDirectCast } from "./frameReply-helper";
 import { frameDirectCast } from "./frameDC-helper";
 import { neynarClient } from "./config";
+import cron from "node-cron";
+import { resetSubscribesAndDb } from "./cron-action";
 
 dotenv.config();
 
@@ -28,7 +30,8 @@ app.post("/subscribe", async (req: Request, res: Response) => {
       body?.data?.mentioned_profiles &&
       body.data.mentioned_profiles.filter(
         (profile: any) => profile.fid === 792715
-      ).length > 0
+      ).length > 0 &&
+      body.data.author.fid !== 792715
     ) {
       console.log({
         authorFid: body.data.author.fid,
@@ -169,6 +172,9 @@ connectDB()
   .then(() => {
     app.listen(port, () => {
       console.log(`[server]: Server is running at http://localhost:${port}`);
+      cron.schedule("0 0 * * *", async () => {
+        await resetSubscribesAndDb();
+      });
     });
   })
   .catch((err) => {

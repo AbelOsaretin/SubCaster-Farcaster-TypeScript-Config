@@ -19,6 +19,8 @@ const models_1 = require("./models");
 const webhook_helper_1 = require("./webhook-helper");
 const frameReply_helper_1 = require("./frameReply-helper");
 const config_1 = require("./config");
+const node_cron_1 = __importDefault(require("node-cron"));
+const cron_action_1 = require("./cron-action");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 4343;
@@ -32,7 +34,8 @@ app.post("/subscribe", (req, res) => __awaiter(void 0, void 0, void 0, function*
     const body = req.body;
     try {
         if (((_a = body === null || body === void 0 ? void 0 : body.data) === null || _a === void 0 ? void 0 : _a.mentioned_profiles) &&
-            body.data.mentioned_profiles.filter((profile) => profile.fid === 792715).length > 0) {
+            body.data.mentioned_profiles.filter((profile) => profile.fid === 792715).length > 0 &&
+            body.data.author.fid !== 792715) {
             console.log({
                 authorFid: body.data.author.fid,
                 parentAuthorFid: body.data.parent_author.fid,
@@ -129,6 +132,9 @@ app.post("/watch", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     .then(() => {
     app.listen(port, () => {
         console.log(`[server]: Server is running at http://localhost:${port}`);
+        node_cron_1.default.schedule("0 0 * * *", () => __awaiter(void 0, void 0, void 0, function* () {
+            yield (0, cron_action_1.resetSubscribesAndDb)();
+        }));
     });
 })
     .catch((err) => {

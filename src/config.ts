@@ -17,6 +17,7 @@ export const watcherWebhookId = process.env.WATCHER_WEBHOOK_ID!;
 export const watcherWebhookName = "watcher";
 export const watcherWebhookUrl = process.env.WATCHER_WEBHOOK_URL!;
 export const WARPCAST_API_KEY = process.env.WARPCAST_API_KEY!;
+export const MONGODB_URI = process.env.MONGODB_URI!;
 
 export const neynarClient = new NeynarAPIClient(process.env.NEYNAR_API_KEY!);
 
