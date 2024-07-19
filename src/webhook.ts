@@ -99,7 +99,7 @@ app.post("/subscribe", async (req: Request, res: Response) => {
 
       await frameReply(
         body.data.hash,
-        `gm ${body.data.author.username}, You've have subscribed to receive Casts from ${parent_author.users[0].username} to your Direct Casts. Note that all Subscriptions are automatically deleted after 1 day. \n To receive Casts directly from me, Ensure you follow @subcasterbot
+        `gm ${body.data.author.username}, You've have subscribed to receive Casts from ${parent_author.users[0].username} to your Direct Casts. Note that all Subscriptions are automatically deleted after 1 day. \n\nTo receive Casts directly from me, Ensure you follow @subcasterbot
         `
       );
 
@@ -144,7 +144,7 @@ app.post("/watch", async (req: Request, res: Response) => {
     const userData = await neynarClient.fetchBulkUsers(users);
 
     const dcMessage = `
-    New Cast from ${authorDisplayName}\n https://warpcast.com/${authorUsername}/${body.data.hash.slice(
+    New Cast from ${authorDisplayName}\n\nhttps://warpcast.com/${authorUsername}/${body.data.hash.slice(
       0,
       10
     )}
