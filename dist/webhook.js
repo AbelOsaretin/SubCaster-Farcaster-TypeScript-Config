@@ -76,7 +76,9 @@ app.post("/subscribe", (req, res) => __awaiter(void 0, void 0, void 0, function*
                 console.log("User updated:", authorFid, parentAuthorFid);
             }
             yield (0, webhook_helper_1.addSubscribesToWebhook)(parentAuthorFid);
-            yield (0, frameReply_helper_1.frameReply)(body.data.hash, `gm ${body.data.author.username}, You've have subscribed to receive Casts from ${parent_author.users[0].username} to your Direct Casts. Note that all Subscriptions are automatically deleted after 1 day.`);
+            yield (0, frameReply_helper_1.frameReply)(body.data.hash, `gm ${body.data.author.username}, You've have subscribed to receive Casts from ${parent_author.users[0].username} to your Direct Casts. Note that all Subscriptions are automatically deleted after 1 day.
+        To receive Casts directly from me, Ensure you follow @subcasterbot
+        `);
             console.log({ userData, subscribesData });
             console.log({
                 message: "Webhook received: ",
@@ -106,7 +108,7 @@ app.post("/watch", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const userData = yield config_1.neynarClient.fetchBulkUsers(users);
         const dcMessage = `
     New Cast from ${authorDisplayName}
-    
+
     https://warpcast.com/${authorUsername}/${body.data.hash.slice(0, 10)}
     `;
         Promise.all(users.map((user) => {

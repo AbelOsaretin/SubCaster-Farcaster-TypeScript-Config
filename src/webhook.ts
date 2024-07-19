@@ -97,7 +97,9 @@ app.post("/subscribe", async (req: Request, res: Response) => {
 
       await frameReply(
         body.data.hash,
-        `gm ${body.data.author.username}, You've have subscribed to receive Casts from ${parent_author.users[0].username} to your Direct Casts. Note that all Subscriptions are automatically deleted after 1 day.`
+        `gm ${body.data.author.username}, You've have subscribed to receive Casts from ${parent_author.users[0].username} to your Direct Casts. Note that all Subscriptions are automatically deleted after 1 day.
+        To receive Casts directly from me, Ensure you follow @subcasterbot
+        `
       );
 
       console.log({ userData, subscribesData });
@@ -142,7 +144,7 @@ app.post("/watch", async (req: Request, res: Response) => {
 
     const dcMessage = `
     New Cast from ${authorDisplayName}
-    
+
     https://warpcast.com/${authorUsername}/${body.data.hash.slice(0, 10)}
     `;
 
