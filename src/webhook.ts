@@ -140,6 +140,10 @@ app.post("/watch", async (req: Request, res: Response) => {
       throw new Error("Webhook ignored: Author is not subscribed");
     }
 
+    if (body.type !== "cast.created"){
+      throw new Error("Can't send replies to subscribers")
+    }
+
     const { users } = subscribesData;
     const userData = await neynarClient.fetchBulkUsers(users);
 
